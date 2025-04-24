@@ -131,5 +131,7 @@
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.printWidth": 100,
-  "window.menuBarVisibility": "compact"
+  "window.menuBarVisibility": "compact",
+  "workbench.editor.editorActionsLocation": "titleBar",
+  "security.workspace.trust.startupPrompt": "never"
 }
