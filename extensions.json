@@ -5,16 +5,13 @@
     "codeium.codeium",
     "dbaeumer.vscode-eslint",
     "drcika.apc-extension",
-    "eamodio.gitlens",
     "ecmel.vscode-html-css",
     "esbenp.prettier-vscode",
     "github.copilot",
     "github.github-vscode-theme",
-    "github.vscode-github-actions",
     "jock.svg",
     "miguelsolorio.symbols",
     "ms-vscode.powershell",
-    "ritwickdey.liveserver",
     "usernamehw.errorlens",
     "zignd.html-css-class-completion"
   ]
