@@ -1,5 +1,5 @@
 # Installs the latest VS Code
-winget install --id Microsoft.VisualStudioCode --accept-package-agreements --accept-source-agreements
+winget install --id Microsoft.VisualStudioCode --scope machine --accept-package-agreements --accept-source-agreements
 
 Write-Host -ForegroundColor Green "✔ VS Code Installed."
 
@@ -36,3 +36,42 @@ $extensions | ForEach-Object {
 Remove-Item $extensionsJson
 
 Write-Host -ForegroundColor Green "✔ VS Code setup complete."
+
+# create reg file
+$MultilineComment = @"
+Windows Registry Editor Version 5.00
+
+; Open files with VS Code
+[HKEY_CLASSES_ROOT\*\shell\Open with VS Code]
+@="Edit with VS Code"
+"Icon"="C:\\Program Files\\Microsoft VS Code\\Code.exe,0"
+
+[HKEY_CLASSES_ROOT\*\shell\Open with VS Code\command]
+@="\"C:\\Program Files\\Microsoft VS Code\\Code.exe\" \"%1\""
+
+; Open folder as VS Code Project (right-click ON a folder)
+[HKEY_CLASSES_ROOT\Directory\shell\vscode]
+@="Open Folder as VS Code Project"
+"Icon"="\"C:\\Program Files\\Microsoft VS Code\\Code.exe\",0"
+
+[HKEY_CLASSES_ROOT\Directory\shell\vscode\command]
+@="\"C:\\Program Files\\Microsoft VS Code\\Code.exe\" \"%1\""
+
+; Open folder as VS Code Project (right-click INSIDE a folder)
+[HKEY_CLASSES_ROOT\Directory\Background\shell\vscode]
+@="Open Folder as VS Code Project"
+"Icon"="\"C:\\Program Files\\Microsoft VS Code\\Code.exe\",0"
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\vscode\command]
+@="\"C:\\Program Files\\Microsoft VS Code\\Code.exe\" \"%V\""
+"@
+Set-Content -Path "$env:TEMP\VS Code Context Menu.reg" -Value $MultilineComment -Force
+# edit reg file
+$path = "$env:TEMP\VS Code Context Menu.reg"
+(Get-Content $path) -replace "\?","$" | Out-File $path
+# disable optimize drives
+schtasks /Change /DISABLE /TN "\Microsoft\Windows\Defrag\ScheduledDefrag" | Out-Null
+# import reg file
+Regedit.exe /S "$env:TEMP\VS Code Context Menu.reg"
+
+Write-Host -ForegroundColor Green "✔ Add VS Code Context Menu complete."
