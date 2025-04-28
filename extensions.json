@@ -2,7 +2,6 @@
   "extensions": [
     "astro-build.astro-vscode",
     "bradlc.vscode-tailwindcss",
-    "codeium.codeium",
     "dbaeumer.vscode-eslint",
     "drcika.apc-extension",
     "ecmel.vscode-html-css",
