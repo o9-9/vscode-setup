@@ -1,9 +1,9 @@
 {
   // Theme and icon
   "workbench.iconTheme": "symbols",
-  "workbench.colorTheme": "Oscura Dusk",
   "workbench.productIconTheme": "fluent-icons",
-  "workbench.preferredDarkColorTheme": "Oscura Dusk",
+  "workbench.colorTheme": "GitHub Dark Colorblind (Beta)",
+  "workbench.preferredDarkColorTheme": "GitHub Dark Colorblind (Beta)",
   // Font
   "editor.fontSize": 14,
   "editor.lineHeight": 0,
@@ -171,21 +171,21 @@
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairsHorizontal": "active",
   "editor.guides.highlightActiveIndentation": false,
-  //  "workbench.colorCustomizations": {
-  //    "sideBar.background": "#0a0a0a",
-  //    "editor.background": "#0a0a0a",
-  //    "statusBar.background": "#0a0a0a",
-  //    "statusBar.debuggingBackground": "#0a0a0a",
-  //    "statusBar.noFolderBackground": "#0a0a0a",
-  //    "menu.background": "#141414",
-  //    "terminal.background": "#0a0a0a",
-  //    "panel.background": "#0a0a0a",
-  //    "tab.inactiveBackground": "#0a0a0a",
-  //    "tab.hoverBackground": "#141414",
-  //    "tab.activeBackground": "#141414",
-  //    "titleBar.activeBackground": "#0a0a0a",
-  //    "editorGroupHeader.tabsBackground": "#0a0a0a"
-  //  },
+  "workbench.colorCustomizations": {
+    "sideBar.background": "#0a0a0a",
+    "statusBar.background": "#0a0a0a",
+    "statusBar.debuggingBackground": "#0a0a0a",
+    "statusBar.noFolderBackground": "#0a0a0a",
+    "menu.background": "#141414",
+    "terminal.background": "#0a0a0a",
+    "panel.background": "#0a0a0a",
+    "tab.inactiveBackground": "#0a0a0a",
+    "tab.hoverBackground": "#141414",
+    "tab.activeBackground": "#141414",
+    "titleBar.activeBackground": "#0a0a0a",
+    "editorGroupHeader.tabsBackground": "#0a0a0a"
+  //    "editor.background": "#0a0a0a"
+  },
   // Programming Languages
   "css.lint.unknownAtRules": "ignore",
   "javascript.updateImportsOnFileMove.enabled": "never",
