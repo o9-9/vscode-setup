@@ -63,7 +63,7 @@ if (-not (Test-InternetConnection)) {
 }
 
 # Font Install
-Install-NerdFonts -FontName "CodingFonts" -FontDisplayName "Coding Fonts"
+Install-CodingFonts -FontName "CodingFonts" -FontDisplayName "Coding Fonts"
 
 # Installs the latest VS Code
 winget install --id Microsoft.VisualStudioCode --scope machine --accept-package-agreements --accept-source-agreements
