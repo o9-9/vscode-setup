@@ -18,4 +18,11 @@
 ```ps1
 irm https://raw.githubusercontent.com/o9-9/vscode-setup/main/setup.ps1 | iex
 ```
+
+###
+
+```ps1
+irm https://raw.githubusercontent.com/o9-9/vscode-setup/main/fonts.ps1 | iex
+```
+
 ###
