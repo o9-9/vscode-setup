@@ -159,6 +159,6 @@ Write-Host -ForegroundColor White "Install Code Fonts."
 # Fonts Install
 Install-CodingFonts -FontName "CodingFonts" -FontDisplayName "Coding Fonts"
 
-Write-Host -ForegroundColor Gray "✔ Code Fonts Installed.."
+Write-Host -ForegroundColor Gray "✔ Code Fonts Installed."
 
 Write-Host -ForegroundColor Gray "✔ VS Code Setup Complete."
