@@ -16,7 +16,11 @@ function Test-InternetConnection {
     }
 }
 
-# Function to install CodingFonts
+Write-Host -ForegroundColor Gray "✔ Test Internet Complete."
+
+Write-Host -ForegroundColor White "Download Code Fonts."
+
+# Function to Download Coding Fonts
 function Install-CodingFonts {
     param (
         [string]$FontName = "CodingFonts",
@@ -57,10 +61,22 @@ function Install-CodingFonts {
     }
 }
 
+Write-Host -ForegroundColor Gray "✔ Download Code Fonts Complete."
+
+Write-Host -ForegroundColor White "Check for Internet."
+
 # Check for internet connectivity before proceeding
 if (-not (Test-InternetConnection)) {
     break
 }
 
-# Font Install
+Write-Host -ForegroundColor Gray "✔ Check for Internet Complete."
+
+Write-Host -ForegroundColor White "Install Code Fonts."
+
+# Fonts Install
 Install-CodingFonts -FontName "CodingFonts" -FontDisplayName "Coding Fonts"
+
+Write-Host -ForegroundColor Gray "✔ Code Fonts Installed."
+
+Write-Host -ForegroundColor Gray "✔ Code Fonts Complete."
