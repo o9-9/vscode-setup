@@ -6,15 +6,11 @@
     "dbaeumer.vscode-eslint",
     "ms-vscode.powershell",
     "drcika.apc-extension",
-    "usernamehw.errorlens",
     "miguelsolorio.symbols",
     "oderwat.indent-rainbow",
     "miguelsolorio.fluent-icons",
     "aaron-bond.better-comments",
-    "yzhang.markdown-all-in-one",
-    "ionutvmi.path-autocomplete",
     "formulahendry.auto-close-tag",
-    "formulahendry.auto-rename-tag",
-    "christian-kohler.path-intellisense"
+    "formulahendry.auto-rename-tag"
   ]
 }
