@@ -10,13 +10,6 @@ $vsCodeUserPath = "$env:APPDATA\Code\User"
 $vsCodeExtensionsPath = "$env:USERPROFILE\.vscode\extensions"
 
 function Install-Config {
-    <#
-    .SYNOPSIS
-    Installs VS Code and Applies User Settings, Keybindings, Extensions, and Context Menu Entries.
-    .DESCRIPTION
-    Installs the Latest Visual Studio Code, Updates the User Settings and Keybindings from a GitHub Repo,
-    installs the Listed Extensions, Refreshes Environment Variables, and Sets Up the VS Code context Menu Via Registry.
-    #>
     Write-Host -ForegroundColor White "Installing Visual Studio Code..."
     winget install --id Microsoft.VisualStudioCode --scope machine --accept-package-agreements --accept-source-agreements | Out-Null
     Write-Host -ForegroundColor Green "✔ VS Code Installed."
@@ -88,63 +81,48 @@ Windows Registry Editor Version 5.00
     Write-Host -ForegroundColor Green "✔ VS Code Setup Complete."
 }
 
-function Install-CodingFonts {
-    <#
-    .SYNOPSIS
-    Downloads and Installs Fonts from a Zip Archive on GitHub.
-    .PARAMETER FontName
-    The Base Name of the Fonts Zip File (Without Extension) on the Remote Repo.
-    .PARAMETER FontDisplayName
-    The Display Name of the Fonts to Verify Installation.
-    #>
+# Function to Download Fonts
+function Install-Fonts {
     param (
         [string]$FontName = "CodingFonts",
         [string]$FontDisplayName = "Coding Fonts"
     )
+
     try {
-        Add-Type -AssemblyName System.Drawing
-        $installedFonts = (New-Object System.Drawing.Text.InstalledFontCollection).Families.Name
-        if ($installedFonts -notcontains $FontDisplayName) {
-            $fontZipUrl   = "https://github.com/o9-9/vscode-setup/raw/main/$($FontName).zip"
-            $zipFilePath  = "$env:TEMP\$($FontName).zip"
-            $extractPath  = "$env:TEMP\$($FontName)"
+        [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing")
+        $fontFamilies = (New-Object System.Drawing.Text.InstalledFontCollection).Families.Name
+        if ($fontFamilies -notcontains "${FontDisplayName}") {
+            $fontZipUrl = "https://github.com/o9-9/vscode-setup/raw/main/${FontName}.zip"
+            $zipFilePath = "$env:TEMP\${FontName}.zip"
+            $extractPath = "$env:TEMP\${FontName}"
 
-            # Download the font Zip File
-            Invoke-WebRequest -Uri $fontZipUrl -OutFile $zipFilePath -UseBasicParsing
+            $webClient = New-Object System.Net.WebClient
+            $webClient.DownloadFileAsync((New-Object System.Uri($fontZipUrl)), $zipFilePath)
 
-            # Extract and Install Fonts Files
-            Expand-Archive -LiteralPath $zipFilePath -DestinationPath $extractPath -Force
-            $shellApp   = New-Object -ComObject Shell.Application
-            $fontFolder = $shellApp.Namespace(0x14)
-            Get-ChildItem -Path $extractPath -Filter "*.ttf" -Recurse | ForEach-Object {
-                if (!(Test-Path "C:\Windows\Fonts\$($_.Name)")) {
-                    $fontFolder.CopyHere($_.FullName, 0x10)
+            while ($webClient.IsBusy) {
+                Start-Sleep -Seconds 2
+            }
+
+            Expand-Archive -Path $zipFilePath -DestinationPath $extractPath -Force
+            $destination = (New-Object -ComObject Shell.Application).Namespace(0x14)
+            Get-ChildItem -Path $extractPath -Recurse -Filter "*.ttf" | ForEach-Object {
+                If (-not(Test-Path "C:\Windows\Fonts\$($_.Name)")) {
+                    $destination.CopyHere($_.FullName, 0x10)
                 }
             }
 
-            # Clean Up
             Remove-Item -Path $extractPath -Recurse -Force
             Remove-Item -Path $zipFilePath -Force
-            Write-Host -ForegroundColor Green "✔ Installed Font"
+        } else {
+            Write-Host "Font ${FontDisplayName} already installed"
         }
-        else {
-            Write-Host -ForegroundColor Cyan "Font Already Installed"
-        }
-    } catch {
-        Write-Error "Failed to Install Fonts"
+    }
+    catch {
+        Write-Error "Failed to download or install ${FontDisplayName} font. Error: $_"
     }
 }
 
-function Install-Fonts {
-    Write-Host -ForegroundColor White "Installing coding fonts..."
-    Install-CodingFonts -FontName "CodingFonts" -FontDisplayName "Coding Fonts"
-}
-
 function Install-Theme {
-    <#
-    .SYNOPSIS
-    Downloads the o9 Theme from GitHub and Installs it Into the .VSCode Extensions Folder.
-    #>
     Write-Host -ForegroundColor White "Installing o9 Theme..."
     $zipUrl      = "https://github.com/o9-9/vscode-setup/archive/refs/heads/main.zip"
     $zipPath     = "$env:TEMP\vscode-setup-main.zip"
@@ -173,7 +151,7 @@ function Install-Theme {
 # Main Interactive Menu Loop
 while ($true) {
     Write-Host ""
-    Write-Host "Select Option:"
+    Write-Host "Please Enter:"
     Write-Host "1. Install Config"
     Write-Host "2. Install Fonts"
     Write-Host "3. Install Theme"
@@ -182,7 +160,7 @@ while ($true) {
     $choice = Read-Host "Enter choice (1-4)"
     switch ($choice) {
         "1" { Install-Config }
-        "2" { Install-Fonts }
+        "2" { Install-Fonts -FontName "CodingFonts" -FontDisplayName "Coding Fonts" }
         "3" { Install-Theme }
         "4" {
             Write-Host -ForegroundColor Green "Goodbye"
