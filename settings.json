@@ -2,17 +2,15 @@
   // Theme and icon
   "workbench.iconTheme": "symbols",
   "workbench.productIconTheme": "fluent-icons",
-  "workbench.colorTheme": "Min Dark",
-  "workbench.preferredDarkColorTheme": "Min Dark",
+  "workbench.colorTheme": "o9-Theme",
+  "workbench.preferredDarkColorTheme": "o9-Theme",
   // Font
   "editor.fontSize": 14,
   "editor.lineHeight": 0,
   "debug.console.fontSize": 15,
   "debug.console.lineHeight": 35,
-  "editor.fontFamily": "JetBrains Mono",
-  "scm.inputFontFamily": "JetBrains mono",
-  "debug.console.fontFamily": "JetBrains mono",
-  "editor.fontLigatures": "'ss01', 'cv03', 'zero'",
+  "editor.fontFamily": "'JetBrains Mono', Consolas, 'Courier New', monospace",
+  "editor.fontLigatures": true,
   // Update and Auto Save
   "update.mode": "manual",
   "files.autoSaveDelay": 6000,
@@ -128,7 +126,6 @@
   // Terminal
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.lineHeight": 1.85,
-  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
   "terminal.integrated.defaultProfile.windows": "PowerShell",
   // Explorer
   "explorer.compactFolders": false,
@@ -321,7 +318,7 @@
     "rgba(255,127,255,0.07)",
     "rgba(79,236,236,0.07)"
   ],
-  "errorLens.fontFamily": "Gabriola",
+  "errorLens.fontFamily": "JetBrains Mono",
   "errorLens.fontSize": 8,
   "errorLens.alignMessage": {
     "start": 40,
