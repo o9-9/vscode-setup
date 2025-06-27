@@ -88,23 +88,7 @@ Windows Registry Editor Version 5.00
     Write-Host -ForegroundColor Green "✔ VS Code Setup Complete."
 }
 
-function Test-InternetConnection {
-    <#
-    .SYNOPSIS
-    Test Internet Connectivity By Pinging Google.
-    .OUTPUTS
-    Boolean: $true if the Ping Succeeds, Otherwise $false.
-    #>
-    try {
-        Test-Connection -ComputerName www.google.com -Count 1 -Quiet -ErrorAction Stop | Out-Null
-        return $true
-    } catch {
-        Write-Warning "No Internet Connection Detected. Please Check your Network."
-        return $false
-    }
-}
-
-function Install-Fonts {
+function Install-CodingFonts {
     <#
     .SYNOPSIS
     Downloads and Installs Fonts from a Zip Archive on GitHub.
@@ -114,14 +98,14 @@ function Install-Fonts {
     The Display Name of the Fonts to Verify Installation.
     #>
     param (
-        [string]$FontName = "Fonts",
-        [string]$FontDisplayName = "Fonts"
+        [string]$FontName = "CodingFonts",
+        [string]$FontDisplayName = "Coding Fonts"
     )
     try {
         Add-Type -AssemblyName System.Drawing
         $installedFonts = (New-Object System.Drawing.Text.InstalledFontCollection).Families.Name
         if ($installedFonts -notcontains $FontDisplayName) {
-            $fontZipUrl   = "https://github.com/o9-9/files/raw/main/$($FontName).zip"
+            $fontZipUrl   = "https://github.com/o9-9/vscode-setup/raw/main/$($FontName).zip"
             $zipFilePath  = "$env:TEMP\$($FontName).zip"
             $extractPath  = "$env:TEMP\$($FontName)"
 
@@ -141,21 +125,19 @@ function Install-Fonts {
             # Clean Up
             Remove-Item -Path $extractPath -Recurse -Force
             Remove-Item -Path $zipFilePath -Force
-            Write-Host -ForegroundColor Green "✔ Installed Font: $FontDisplayName"
+            Write-Host -ForegroundColor Green "✔ Installed Font"
         }
         else {
-            Write-Host -ForegroundColor Cyan "✔ Font Already Installed: $FontDisplayName"
+            Write-Host -ForegroundColor Cyan "Font Already Installed"
         }
     } catch {
-        Write-Error "Failed to Install Fonts $FontDisplayName: $_"
+        Write-Error "Failed to Install Fonts"
     }
 }
 
 function Install-Fonts {
-    Write-Host -ForegroundColor White "Checking Internet Connection..."
-    if (-not (Test-InternetConnection)) { return }
-    Write-Host -ForegroundColor White "Installing Fonts..."
-    Install-Fonts -FontName "Fonts" -FontDisplayName "Fonts"
+    Write-Host -ForegroundColor White "Installing coding fonts..."
+    Install-CodingFonts -FontName "CodingFonts" -FontDisplayName "Coding Fonts"
 }
 
 function Install-Theme {
@@ -164,9 +146,9 @@ function Install-Theme {
     Downloads the o9 Theme from GitHub and Installs it Into the .VSCode Extensions Folder.
     #>
     Write-Host -ForegroundColor White "Installing o9 Theme..."
-    $zipUrl      = "https://github.com/o9-9/vscode-setup/raw/main/Fonts.zip"
-    $zipPath     = "$env:TEMP\Fonts.zip"
-    $extractDir  = "$env:TEMP\Fonts"
+    $zipUrl      = "https://github.com/o9-9/vscode-setup/archive/refs/heads/main.zip"
+    $zipPath     = "$env:TEMP\vscode-setup-main.zip"
+    $extractDir  = "$env:TEMP\vscode-setup"
     
     # Download and Extract the Repository Zip
     Invoke-WebRequest -Uri $zipUrl -OutFile $zipPath -UseBasicParsing
@@ -185,16 +167,16 @@ function Install-Theme {
     Remove-Item -Path $extractDir -Recurse -Force
     Remove-Item -Path $zipPath -Force
 
-    Write-Host -ForegroundColor Green "✔ o9 Theme Installed in VS Code Extensions."
+    Write-Host -ForegroundColor Green "✔ o9 Theme Installed."
 }
 
 # Main Interactive Menu Loop
 while ($true) {
     Write-Host ""
-    Write-Host "Select:"
-    Write-Host "1. VSCode"
-    Write-Host "2. Fonts"
-    Write-Host "3. Theme"
+    Write-Host "Select Option:"
+    Write-Host "1. Install Config"
+    Write-Host "2. Install Fonts"
+    Write-Host "3. Install Theme"
     Write-Host "4. Back"
 
     $choice = Read-Host "Enter choice (1-4)"
