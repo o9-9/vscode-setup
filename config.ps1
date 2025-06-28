@@ -1,171 +1,257 @@
-# Ensure the script can run with elevated privileges
-if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-    Write-Warning "Please run this script as an Administrator!"
+if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+
+    $powershellCmd = if (Get-Command pwsh -ErrorAction SilentlyContinue) { "pwsh" } else { "powershell" }
+    $processCmd = if (Get-Command wt.exe -ErrorAction SilentlyContinue) { "wt.exe" } else { "$powershellCmd" }
+
+    if ($processCmd -eq "wt.exe") {
+        Start-Process $processCmd -ArgumentList "$powershellCmd -ExecutionPolicy Bypass -NoProfile -Command `"$script`"" -Verb RunAs
+    }
+    else {
+        Start-Process $processCmd -ArgumentList "-ExecutionPolicy Bypass -NoProfile -Command `"$script`"" -Verb RunAs
+    }
+
     break
 }
 
-# Global Variables
-$repoUrl = "https://raw.githubusercontent.com/o9-9/vscode-setup/main"
-$vsCodeUserPath = "$env:APPDATA\Code\User"
-$vsCodeExtensionsPath = "$env:USERPROFILE\.vscode\extensions"
+function Install-o9Theme {
+    param (
+        [string]$ThemeUrl = "https://github.com/o9-9/vscode-setup/releases/download/9/o9-Theme.zip",
+        [string]$ZipPath = "$env:TEMP\o9-Theme.zip",
+        [string]$ExtractPath = "$env:TEMP\o9-Theme",
+        [string]$DestinationPath = "C:\Program Files\Microsoft VS Code\resources\app\extensions",
+        [string]$SevenZipPath = "C:\Program Files\7-Zip\7z.exe"
+    )
+
+    Write-Host "`n[1/4] Downloading o9 Theme..." -ForegroundColor Cyan
+    try {
+        Invoke-WebRequest -Uri $ThemeUrl -OutFile $ZipPath -UseBasicParsing
+        Write-Host "[OK] Downloaded: $ZipPath" -ForegroundColor Green
+    } catch {
+        Write-Error "Failed to download o9 Theme: $_"
+        return
+    }
+
+    Write-Host "`n[2/4] Extracting zip with 7-Zip..." -ForegroundColor Cyan
+    if (!(Test-Path $SevenZipPath)) {
+        Write-Error "7-Zip not found at: $SevenZipPath"
+        return
+    }
+
+    if (Test-Path $ExtractPath) {
+        Remove-Item -Path $ExtractPath -Recurse -Force
+    }
+
+    try {
+        & "$SevenZipPath" x $ZipPath -o"$ExtractPath" -y | Out-Null
+        Write-Host "[OK] Extracted to: $ExtractPath" -ForegroundColor Green
+    } catch {
+        Write-Error "Extraction failed: $_"
+        return
+    }
+
+    Write-Host "`n[3/4] Moving theme to VS Code extensions directory..." -ForegroundColor Cyan
+    try {
+        $folderName = Get-ChildItem -Path $ExtractPath | Where-Object { $_.PSIsContainer } | Select-Object -First 1
+        $targetFolder = Join-Path -Path $DestinationPath -ChildPath $folderName.Name
+
+        if (Test-Path $targetFolder) {
+            Remove-Item -Path $targetFolder -Recurse -Force
+        }
+
+        Move-Item -Path $folderName.FullName -Destination $DestinationPath
+        Write-Host "[OK] o9 Theme installed at: $targetFolder" -ForegroundColor Green
+    } catch {
+        Write-Error "Failed to move theme folder: $_"
+        return
+    }
+
+    Write-Host "`n[4/4] Installation complete." -ForegroundColor Green
+}
+
+function Install-JetBrainsMono {
+    $fontUrl = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip"
+    $zipPath = "$env:TEMP\JetBrainsMono.zip"
+    $extractPath = "$env:TEMP\JetBrainsMono"
+    $fontsPath = "$env:WINDIR\Fonts"
+
+    Write-Host "`n[1/3] Downloading JetBrainsMono Nerd Font..." -ForegroundColor Cyan
+    try {
+        Invoke-WebRequest -Uri $fontUrl -OutFile $zipPath -UseBasicParsing
+        Write-Host "[OK] Downloaded font zip." -ForegroundColor Green
+    } catch {
+        Write-Error "Failed to download fonts: $_"
+        return
+    }
+
+    Write-Host "`n[2/3] Extracting font files..." -ForegroundColor Cyan
+    if (Test-Path $extractPath) {
+        Remove-Item $extractPath -Recurse -Force
+    }
+    Expand-Archive -LiteralPath $zipPath -DestinationPath $extractPath -Force
+
+    Write-Host "`n[3/3] Installing fonts..." -ForegroundColor Cyan
+    try {
+        $fonts = Get-ChildItem "$extractPath" -Include *.ttf -Recurse
+        foreach ($font in $fonts) {
+            $destFontPath = Join-Path -Path $fontsPath -ChildPath $font.Name
+            Copy-Item -Path $font.FullName -Destination $destFontPath -Force
+
+            $regFontName = [System.IO.Path]::GetFileNameWithoutExtension($font.Name)
+            New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" `
+                -Name "$regFontName (TrueType)" -Value $font.Name -PropertyType String -Force | Out-Null
+        }
+        Write-Host "[OK] JetBrainsMono Nerd Fonts installed successfully!" -ForegroundColor Green
+    } catch {
+        Write-Error "Font installation failed: $_"
+    }
+}
+
+function Install-CodeFonts {
+    $fontUrl = "https://github.com/o9-9/vscode-setup/releases/download/9/CodeFonts.zip"
+    $zipPath = "$env:TEMP\CodeFonts.zip"
+    $extractPath = "$env:TEMP\CodeFonts"
+    $fontsPath = "$env:WINDIR\Fonts"
+
+    Write-Host "`n[1/3] Downloading Code Fonts..." -ForegroundColor Cyan
+    try {
+        Invoke-WebRequest -Uri $fontUrl -OutFile $zipPath -UseBasicParsing
+        Write-Host "[OK] Downloaded font zip." -ForegroundColor Green
+    } catch {
+        Write-Error "Failed to download fonts: $_"
+        return
+    }
+
+    Write-Host "`n[2/3] Extracting font files..." -ForegroundColor Cyan
+    if (Test-Path $extractPath) {
+        Remove-Item $extractPath -Recurse -Force
+    }
+    Expand-Archive -LiteralPath $zipPath -DestinationPath $extractPath -Force
+
+    Write-Host "`n[3/3] Installing fonts..." -ForegroundColor Cyan
+    try {
+        $fonts = Get-ChildItem "$extractPath" -Include *.ttf -Recurse
+        foreach ($font in $fonts) {
+            $destFontPath = Join-Path -Path $fontsPath -ChildPath $font.Name
+            Copy-Item -Path $font.FullName -Destination $destFontPath -Force
+
+            $regFontName = [System.IO.Path]::GetFileNameWithoutExtension($font.Name)
+            New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" `
+                -Name "$regFontName (TrueType)" -Value $font.Name -PropertyType String -Force | Out-Null
+        }
+        Write-Host "[OK] Code Fonts installed successfully!" -ForegroundColor Green
+    } catch {
+        Write-Error "Font installation failed: $_"
+    }
+}
 
 function Install-Config {
-    Write-Host -ForegroundColor White "Installing Visual Studio Code..."
-    winget install --id Microsoft.VisualStudioCode --scope machine --accept-package-agreements --accept-source-agreements | Out-Null
-    Write-Host -ForegroundColor Green "✔ VS Code Installed."
+    Write-Host "`n[1/5] Installing Visual Studio Code via winget..." -ForegroundColor Cyan
+    try {
+        winget install --id Microsoft.VisualStudioCode --scope machine --accept-package-agreements --accept-source-agreements
+    } catch {
+        Write-Error "VS Code installation failed: $_"
+        return
+    }
 
-    Write-Host -ForegroundColor White "Configuring VS Code User Settings..."
+    Write-Host "`n[2/5] Downloading VS Code config files..." -ForegroundColor Cyan
+    $repoUrl = "https://raw.githubusercontent.com/o9-9/vscode-setup/main"
+    $vsCodeUserPath = "$env:APPDATA\Code\User"
+
     if (!(Test-Path $vsCodeUserPath)) {
         New-Item -ItemType Directory -Path $vsCodeUserPath -Force | Out-Null
-        Write-Host -ForegroundColor Cyan "✔ Created VS Code User Settings Directory."
     }
 
-    # Download settings.json and keybindings.json from the Repository
-    Invoke-WebRequest -Uri "$repoUrl/settings.json" -OutFile "$vsCodeUserPath\settings.json" -UseBasicParsing
-    Write-Host -ForegroundColor Yellow "✔ Copied Settings.json."
-    Invoke-WebRequest -Uri "$repoUrl/keybindings.json" -OutFile "$vsCodeUserPath\keybindings.json" -UseBasicParsing
-    Write-Host -ForegroundColor Yellow "✔ Copied Keybindings.json."
+    Invoke-WebRequest -Uri "$repoUrl/settings.json" -OutFile "$vsCodeUserPath\settings.json"
+    Invoke-WebRequest -Uri "$repoUrl/keybindings.json" -OutFile "$vsCodeUserPath\keybindings.json"
 
-    # Refresh Environment Variables to Ensure New Tools are on the PATH
-    $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" +
-                [System.Environment]::GetEnvironmentVariable("Path", "User")
-    Write-Host -ForegroundColor Magenta "✔ Environment Variables Refreshed."
+    Write-Host "[OK] Config files applied." -ForegroundColor Green
 
-    # Install Extensions listed in the Extensions.json from the Repo
+    Write-Host "`n[3/5] Installing extensions from extensions.json..." -ForegroundColor Cyan
     $extensionsJson = "$env:TEMP\extensions.json"
-    Invoke-WebRequest -Uri "$repoUrl/extensions.json" -OutFile $extensionsJson -UseBasicParsing
-    $extensions = (Get-Content $extensionsJson -Raw | ConvertFrom-Json).extensions
-    foreach ($ext in $extensions) {
-        code --install-extension $ext | Out-Null
-        Write-Host -ForegroundColor Cyan "✔ Installed Extension: $ext"
+    Invoke-WebRequest -Uri "$repoUrl/extensions.json" -OutFile $extensionsJson
+    $extensions = (Get-Content $extensionsJson | ConvertFrom-Json).extensions
+    $extensions | ForEach-Object {
+        code --install-extension $_
     }
-    Remove-Item -Path $extensionsJson -Force
+    Remove-Item $extensionsJson
 
-    # Configure VS Code Context Menu Via Registry Entries
-    Write-Host -ForegroundColor White "Configuring VS Code Context Menu..."
-    $regFilePath = "$env:TEMP\VSCodeContextMenu.reg"
-    $regContent = @"
+    Write-Host "[OK] Extensions installed." -ForegroundColor Green
+
+    Write-Host "`n[4/5] Adding VS Code to right-click context menu..." -ForegroundColor Cyan
+    $MultilineComment = @"
 Windows Registry Editor Version 5.00
 
-; Open files with VS Code
 [HKEY_CLASSES_ROOT\*\shell\Open with VS Code]
-@="\"Edit with VS Code\""
-"Icon"="\"C:\\Program Files\\Microsoft VS Code\\Code.exe\",0"
-
+@="Edit with VS Code"
+"Icon"="C:\\Program Files\\Microsoft VS Code\\Code.exe,0"
 [HKEY_CLASSES_ROOT\*\shell\Open with VS Code\command]
 @="\"C:\\Program Files\\Microsoft VS Code\\Code.exe\" \"%1\""
 
-; Open folder as VS Code Project (right-click ON a folder)
 [HKEY_CLASSES_ROOT\Directory\shell\vscode]
 @="Open Folder as VS Code Project"
 "Icon"="\"C:\\Program Files\\Microsoft VS Code\\Code.exe\",0"
-
 [HKEY_CLASSES_ROOT\Directory\shell\vscode\command]
 @="\"C:\\Program Files\\Microsoft VS Code\\Code.exe\" \"%1\""
 
-; Open folder as VS Code Project (right-click INSIDE a folder)
 [HKEY_CLASSES_ROOT\Directory\Background\shell\vscode]
 @="Open Folder as VS Code Project"
 "Icon"="\"C:\\Program Files\\Microsoft VS Code\\Code.exe\",0"
-
 [HKEY_CLASSES_ROOT\Directory\Background\shell\vscode\command]
 @="\"C:\\Program Files\\Microsoft VS Code\\Code.exe\" \"%V\""
 "@
-    Set-Content -Path $regFilePath -Value $regContent -Force
+    $regFile = "$env:TEMP\VSCodeContextMenu.reg"
+    Set-Content -Path $regFile -Value $MultilineComment -Force
+    Regedit.exe /S $regFile
 
-    # Import Registry Entries Silently
-    Regedit.exe /S $regFilePath
-    Remove-Item -Path $regFilePath -Force
-    Write-Host -ForegroundColor Green "✔ VS Code Context Menu Configured."
+    Write-Host "[OK] Context menu entries added." -ForegroundColor Green
 
-    Write-Host -ForegroundColor Green "✔ VS Code Setup Complete."
+    Write-Host "`n[5/5] Configuration complete." -ForegroundColor Green
 }
 
-# Function to Download Fonts
-function Install-Fonts {
-    param (
-        [string]$FontName = "CodingFonts",
-        [string]$FontDisplayName = "Coding Fonts"
-    )
+function Show-Menu {
+    Clear-Host
+    Write-Host "==========================" -ForegroundColor Yellow
+    Write-Host "     o9 Setup Installer   " -ForegroundColor Cyan
+    Write-Host "==========================" -ForegroundColor Yellow
+    Write-Host "1. Install o9 Theme"
+    Write-Host "2. Install JetBrains Mono Font"
+    Write-Host "3. Install Code Fonts"
+    Write-Host "4. Install VS Code Config"
+    Write-Host "5. Exit"
+    Write-Host "--------------------------"
+}
 
-    try {
-        [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing")
-        $fontFamilies = (New-Object System.Drawing.Text.InstalledFontCollection).Families.Name
-        if ($fontFamilies -notcontains "${FontDisplayName}") {
-            $fontZipUrl = "https://github.com/o9-9/vscode-setup/raw/main/${FontName}.zip"
-            $zipFilePath = "$env:TEMP\${FontName}.zip"
-            $extractPath = "$env:TEMP\${FontName}"
-
-            $webClient = New-Object System.Net.WebClient
-            $webClient.DownloadFileAsync((New-Object System.Uri($fontZipUrl)), $zipFilePath)
-
-            while ($webClient.IsBusy) {
-                Start-Sleep -Seconds 2
+function Start-Installer {
+    do {
+        Show-Menu
+        $choice = Read-Host "`nSelect an option (1-5)"
+        switch ($choice) {
+            '1' {
+                Install-o9Theme
+                Pause
             }
-
-            Expand-Archive -Path $zipFilePath -DestinationPath $extractPath -Force
-            $destination = (New-Object -ComObject Shell.Application).Namespace(0x14)
-            Get-ChildItem -Path $extractPath -Recurse -Filter "*.ttf" | ForEach-Object {
-                If (-not(Test-Path "C:\Windows\Fonts\$($_.Name)")) {
-                    $destination.CopyHere($_.FullName, 0x10)
-                }
+            '2' {
+                Install-JetBrainsMono
+                Pause
             }
-
-            Remove-Item -Path $extractPath -Recurse -Force
-            Remove-Item -Path $zipFilePath -Force
-        } else {
-            Write-Host "Font ${FontDisplayName} already installed"
+            '3' {
+                Install-CodeFonts
+                Pause
+            }
+            '4' {
+                Install-Config
+                Pause
+            }
+            '5' {
+                Write-Host "`nExiting installer..." -ForegroundColor DarkGray
+            }
+            default {
+                Write-Host "Invalid option. Try again." -ForegroundColor Red
+                Start-Sleep -Seconds 1
+            }
         }
-    }
-    catch {
-        Write-Error "Failed to download or install ${FontDisplayName} font. Error: $_"
-    }
+    } while ($choice -ne '5')
 }
 
-function Install-Theme {
-    Write-Host -ForegroundColor White "Installing o9 Theme..."
-    $zipUrl      = "https://github.com/o9-9/vscode-setup/archive/refs/heads/main.zip"
-    $zipPath     = "$env:TEMP\vscode-setup-main.zip"
-    $extractDir  = "$env:TEMP\vscode-setup"
-    
-    # Download and Extract the Repository Zip
-    Invoke-WebRequest -Uri $zipUrl -OutFile $zipPath -UseBasicParsing
-    Expand-Archive -LiteralPath $zipPath -DestinationPath $extractDir -Force
-
-    # The Theme Folder Inside the Extracted Content
-    $themeSource = Join-Path $extractDir "o9-Theme"
-    $themeDest   = Join-Path $vsCodeExtensionsPath "o9-Theme"
-
-    if (Test-Path $themeDest) {
-        Remove-Item -Path $themeDest -Recurse -Force
-    }
-    Move-Item -Path $themeSource -Destination $themeDest
-
-    # Clean Up
-    Remove-Item -Path $extractDir -Recurse -Force
-    Remove-Item -Path $zipPath -Force
-
-    Write-Host -ForegroundColor Green "✔ o9 Theme Installed."
-}
-
-# Main Interactive Menu Loop
-while ($true) {
-    Write-Host ""
-    Write-Host "Please Enter:"
-    Write-Host "1. Install Config"
-    Write-Host "2. Install Fonts"
-    Write-Host "3. Install Theme"
-    Write-Host "4. Back"
-
-    $choice = Read-Host "Enter choice (1-4)"
-    switch ($choice) {
-        "1" { Install-Config }
-        "2" { Install-Fonts -FontName "CodingFonts" -FontDisplayName "Coding Fonts" }
-        "3" { Install-Theme }
-        "4" {
-            Write-Host -ForegroundColor Green "Goodbye"
-            break
-        }
-        default { Write-Warning "Please Enter 1, 2, 3, or 4." }
-    }
-}
+# Start the script
+Start-Installer
