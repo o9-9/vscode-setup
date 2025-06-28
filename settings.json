@@ -94,7 +94,6 @@
   "window.newWindowDimensions": "inherit",
   "workbench.editor.showTabs": "multiple",
   "editor.renderControlCharacters": false,
-  "workbench.activityBar.location": "top",
   "extensions.ignoreRecommendations": true,
   "diffEditor.ignoreTrimWhitespace": false,
   "editor.hideCursorInOverviewRuler": true,
@@ -131,8 +130,8 @@
     "*.json": "jsonc"
   },
   // Terminal
-  "terminal.integrated.fontSize": 14,
-  "terminal.integrated.lineHeight": 1.85,
+  "terminal.integrated.fontSize": 10,
+  "terminal.integrated.lineHeight": 1.0,
   // Explorer
   "explorer.compactFolders": false,
   // Files
@@ -177,19 +176,7 @@
   "editor.folding": false,
   "files.autoSave": "off"
   /*
-  "apc.font.family": "Inter",
-  "better-comments.multilineComments": true,
-  "better-comments.highlightPlainText": true,
-  "tabnine.experimentalAutoImports": true,
-  "explorer.fileNesting.enabled": true,
-  "explorer.fileNesting.patterns": {
-    "package.json": ".eslint*, .prettier*, tsconfig*, vite*, pnpm-*, bun.lockb, nest*, package-lock*",
-    "tailwind.config.*": "tailwind.config*, postcss.config*",
-    ".env.local": ".env*",
-    ".env": ".env*"
-  },
   "workbench.colorCustomizations": {
-    "sideBar.background": "#0a0a0a",
     "statusBar.background": "#0a0a0a",
     "statusBar.debuggingBackground": "#0a0a0a",
     "statusBar.noFolderBackground": "#0a0a0a",
@@ -200,8 +187,21 @@
     "tab.hoverBackground": "#141414",
     "tab.activeBackground": "#141414",
     "titleBar.activeBackground": "#0a0a0a",
-    "editorGroupHeader.tabsBackground": "#0a0a0a"
+    "editorGroupHeader.tabsBackground": "#0a0a0a",
+    "sideBar.background": "#0a0a0a",
+    "sideBarSectionHeader.background": "#0a0a0a"
     //"editor.background": "#0a0a0a"
+  },
+  "apc.font.family": "Inter",
+  "better-comments.multilineComments": true,
+  "better-comments.highlightPlainText": true,
+  "tabnine.experimentalAutoImports": true,
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "package.json": ".eslint*, .prettier*, tsconfig*, vite*, pnpm-*, bun.lockb, nest*, package-lock*",
+    "tailwind.config.*": "tailwind.config*, postcss.config*",
+    ".env.local": ".env*",
+    ".env": ".env*"
   },
   */
 }
