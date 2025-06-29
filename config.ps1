@@ -198,7 +198,7 @@ function Install-Config {
     $extensions = (Get-Content $extensionsJson | ConvertFrom-Json).extensions
     $extensions | ForEach-Object {
         code --install-extension $_
-        Write-Host -ForegroundColor Cyan "✔ Installed $_"
+        Write-Host "✔ Installed $_" -ForegroundColor Cyan
     }
     Remove-Item $extensionsJson
 
