@@ -181,7 +181,7 @@ function Install-Config {
 
     # Download and copy settings.json
     Invoke-WebRequest -Uri "$repoUrl/settings.json" -OutFile "$vsCodeUserPath\settings.json"
-    Write-Host -ForegroundColor Green "✔ Copied Settings.json to VS Code." -ForegroundColor Green
+    Write-Host "✔ Copied Settings.json to VS Code." -ForegroundColor Green
 
     # Download and copy keybindings.json
     Invoke-WebRequest -Uri "$repoUrl/keybindings.json" -OutFile "$vsCodeUserPath\keybindings.json"
