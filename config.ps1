@@ -162,39 +162,48 @@ function Install-CodeFonts {
 }
 
 function Install-Config {
-    Write-Host "`n[1/5] Installing Visual Studio Code via winget..." -ForegroundColor Cyan
-    try {
-        winget install --id Microsoft.VisualStudioCode --scope machine --accept-package-agreements --accept-source-agreements
-    } catch {
-        Write-Error "VS Code installation failed: $_"
-        return
-    }
+    # Installs the latest VS Code
+    Write-Host "`n[1/5] Installing VS Code..." -ForegroundColor Cyan
+    winget install --id Microsoft.VisualStudioCode --scope machine --accept-package-agreements --accept-source-agreements
+    Write-Host "✔ VS Code Installed." -ForegroundColor Green
 
-    Write-Host "`n[2/5] Downloading VS Code config files..." -ForegroundColor Cyan
+    # Define GitHub Repository and VS Code Paths
+    Write-Host "`n[2/5] Installing GitHub Repository..." -ForegroundColor Cyan
     $repoUrl = "https://raw.githubusercontent.com/o9-9/vscode-setup/main"
     $vsCodeUserPath = "$env:APPDATA\Code\User"
+    Write-Host "✔ GitHub Repository Installed." -ForegroundColor Green
 
+    # Ensure the VS Code Settings Directory Exists
     if (!(Test-Path $vsCodeUserPath)) {
-        New-Item -ItemType Directory -Path $vsCodeUserPath -Force | Out-Null
+        New-Item -ItemType Directory -Path $vsCodeUserPath -Force
+       Write-Host "✔ Created VS Code Settings Directory." -ForegroundColor Green
     }
 
+    # Download and copy settings.json
     Invoke-WebRequest -Uri "$repoUrl/settings.json" -OutFile "$vsCodeUserPath\settings.json"
+    Write-Host -ForegroundColor Green "✔ Copied Settings.json to VS Code." -ForegroundColor Green
+
+    # Download and copy keybindings.json
     Invoke-WebRequest -Uri "$repoUrl/keybindings.json" -OutFile "$vsCodeUserPath\keybindings.json"
+    Write-Host "✔ Copied Keybindings.json to VS Code." -ForegroundColor Green
 
-    Write-Host "[OK] Config files applied." -ForegroundColor Green
+    # Refresh environment variables
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+    Write-Host "✔ Environment Variables Refreshed." -ForegroundColor Green
 
-    Write-Host "`n[3/5] Installing extensions from extensions.json..." -ForegroundColor Cyan
+    # Download and install extensions
+    Write-Host "`n[3/5] Installing Extensions..." -ForegroundColor Cyan
     $extensionsJson = "$env:TEMP\extensions.json"
     Invoke-WebRequest -Uri "$repoUrl/extensions.json" -OutFile $extensionsJson
     $extensions = (Get-Content $extensionsJson | ConvertFrom-Json).extensions
     $extensions | ForEach-Object {
         code --install-extension $_
+        Write-Host -ForegroundColor Cyan "✔ Installed $_"
     }
     Remove-Item $extensionsJson
 
-    Write-Host "[OK] Extensions installed." -ForegroundColor Green
-
-    Write-Host "`n[4/5] Adding VS Code to right-click context menu..." -ForegroundColor Cyan
+    # Adding VS Code to Right-Click Context Menu
+    Write-Host "`n[4/5] Adding VS Code to Context Menu..." -ForegroundColor Cyan
     $MultilineComment = @"
 Windows Registry Editor Version 5.00
 
@@ -220,9 +229,9 @@ Windows Registry Editor Version 5.00
     Set-Content -Path $regFile -Value $MultilineComment -Force
     Regedit.exe /S $regFile
 
-    Write-Host "[OK] Context menu entries added." -ForegroundColor Green
+    Write-Host "✔ VS Code Context Menu Entries Added." -ForegroundColor Green
 
-    Write-Host "`n[5/5] Configuration complete." -ForegroundColor Green
+    Write-Host "`n[5/5] Configuration Complete." -ForegroundColor Green
 }
 
 function Show-Menu {
