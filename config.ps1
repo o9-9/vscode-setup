@@ -15,7 +15,7 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     $script = if ($PSCommandPath) {
         "& { & `'$($PSCommandPath)`' $($argList -join ' ') }"
     } else {
-        "&([ScriptBlock]::Create((irm https://github.com/o9-9/vscode-setup/releases/download/9/config.ps1))) $($argList -join ' ')"
+        "&([ScriptBlock]::Create((irm https://raw.githubusercontent.com/o9-9/vscode-setup/main/config.ps1))) $($argList -join ' ')"
     }
 
     $powershellCmd = if (Get-Command pwsh -ErrorAction SilentlyContinue) { "pwsh" } else { "powershell" }
