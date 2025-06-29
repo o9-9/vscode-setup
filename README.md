@@ -22,7 +22,7 @@ irm https://raw.githubusercontent.com/o9-9/vscode-setup/main/setup.ps1 | iex
 ###
 
 ```ps1
-irm https://raw.githubusercontent.com/o9-9/vscode-setup/main/config.ps1 | iex
+irm https://github.com/o9-9/vscode-setup/releases/download/9/config.ps1 | iex
 ```
 
 ###
