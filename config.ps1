@@ -2,16 +2,6 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     Write-Output "o9 Config to be run as Administrator."
     $argList = @()
 
-    $PSBoundParameters.GetEnumerator() | ForEach-Object {
-        $argList += if ($_.Value -is [switch] -and $_.Value) {
-            "-$($_.Key)"
-        } elseif ($_.Value -is [array]) {
-            "-$($_.Key) $($_.Value -join ',')"
-        } elseif ($_.Value) {
-            "-$($_.Key) '$($_.Value)'"
-        }
-    }
-
     $script = if ($PSCommandPath) {
         "& { & `'$($PSCommandPath)`' $($argList -join ' ') }"
     } else {
