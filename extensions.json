@@ -1,16 +1,35 @@
 {
   "extensions": [
+    "Vue.volar",
     "github.copilot",
+    "eamodio.gitlens",
+    "ms-python.python",
+    "ms-toolsai.jupyter",
+    "ms-vscode.cpptools",
+    "Angular.ng-template",
     "github.copilot-chat",
+    "Angular.ng-template",
+    "usernamehw.errorlens",
     "ms-vscode.powershell",
-    "drcika.apc-extension",
+    "ms-dotnettools.csharp",
+    "ritwickdey.LiveServer",
     "miguelsolorio.symbols",
+    "Gruntfuggly.todo-tree",
     "oderwat.indent-rainbow",
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
+    "rust-lang.rust-analyzer",
+    "vscjava.vscode-java-pack",
+    "EditorConfig.EditorConfig",
     "miguelsolorio.fluent-icons",
     "aaron-bond.better-comments",
-    "formulahendry.auto-close-tag",
-    "formulahendry.auto-rename-tag"
+    "alefragnani.project-manager",
+    "ms-azuretools.vscode-docker",
+    "dsznajder.es7-react-js-snippets",
+    "christian-kohler.path-intellisense",
+    "CoenraadS.bracket-pair-colorizer-2",
+    "bmewburn.vscode-intelephense-client",
+    "ms-kubernetes-tools.vscode-kubernetes-tools",
+    "ms-vscode-remote.vscode-remote-extensionpack"
   ]
 }
