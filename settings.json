@@ -10,7 +10,7 @@
   "security.workspace.trust.startupPrompt": "never",
 
   // --- Privacy SETTINGS ---
-  "update.mode": "none",
+  "update.mode": "manual",
   "extensions.autoUpdate": false,
   "update.showReleaseNotes": false,
   "telemetry.telemetryLevel": "off",
@@ -72,15 +72,17 @@
 
   // --- Editor Improvements SETTINGS ---
   "editor.tabSize": 2,
-  "editor.fontSize": 14,
-  "editor.lineHeight": 22,
+  "editor.fontSize": 13,
+  "editor.lineHeight": 25,
   "editor.wordWrap": "on",
   "editor.folding": false,
-  "editor.formatOnSave": true,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.formatOnSave": false,
   "editor.hover.sticky": false,
   "editor.formatOnType": false,
-  "debug.console.fontSize": 14,
-  "editor.formatOnPaste": true,
+  "debug.console.fontSize": 12,
+  "editor.letterSpacing": 0.3,
+  "editor.formatOnPaste": false,
   "editor.fontLigatures": true,
   "editor.fontWeight": "normal",
   "debug.console.lineHeight": 22,
@@ -96,9 +98,10 @@
   "editor.semanticHighlighting.enabled": true,
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairsHorizontal": "active",
-  "editor.guides.highlightActiveIndentation": false,
+  "editor.guides.highlightActiveIndentation": true,
+  "editor.copyWithSyntaxHighlighting": false,
   "editor.suggest.snippetsPreventQuickSuggestions": false,
-  "editor.fontFamily": "'JetBrains Mono', Consolas, 'Courier New', monospace",
+  "editor.fontFamily": "JetBrainsMono Nerd Font Mono",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
@@ -117,14 +120,14 @@
   "files.trimTrailingWhitespace": true,
 
   // --- Terminal SETTINGS ---
-  "terminal.integrated.fontSize": 14,
-  "terminal.integrated.lineHeight": 1.0,
+  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.lineHeight": 1.2,
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.confirmOnKill": "never",
   "terminal.integrated.tabs.defaultIcon": "github",
   "terminal.integrated.defaultProfile.windows": "PowerShell",
-  "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Mono', Consolas, 'Courier New', monospace",
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono",
   "terminal.integrated.profiles.windows": {
     "PowerShell": {
       "source": "PowerShell",
@@ -145,17 +148,18 @@
   "window.zoomLevel": 0,
   "window.commandCenter": false,
   "window.title": "${rootName}",
-  "window.restoreWindows": "all",
+  "window.restoreWindows": "none",
   "window.dialogStyle": "custom",
   "window.titleBarStyle": "custom",
   "window.customTitleBarVisibility": "auto",
 
   // --- COMPATIBILITY SETTINGS ---
+  "editor.autoIndent": "full",
   "editor.lineNumbers": "on",
   "debug.inlineValues": "on",
   "workbench.tree.indent": 16,
   "editor.glyphMargin": false,
-  "editor.cursorStyle": "line",
+  "editor.cursorStyle": "block",
   "editor.tabCompletion": "on",
   "scm.diffDecorations": "all",
   "editor.hover.enabled": false,
@@ -165,7 +169,7 @@
   "editor.matchBrackets": "near",
   "editor.smoothScrolling": true,
   "workbench.tips.enabled": false,
-  "explorer.confirmDelete": true,
+  "explorer.confirmDelete": false,
   "editor.minimap.autohide": true,
   "outline.problems.badges": false,
   "git.decorations.enabled": false,
@@ -174,6 +178,8 @@
   "debug.toolBarLocation": "docked",
   "explorer.openEditors.visible": 1,
   "editor.guides.indentation": false,
+  "zenMode.centerLayout": false,
+  "search.showLineNumbers": true,
   "search.decorations.badges": false,
   "workbench.statusBar.visible": true,
   "explorer.confirmDragAndDrop": false,
@@ -265,14 +271,14 @@
   "powershell.codeFormatting.pipelineIndentationStyle": "IncreaseIndentationAfterEveryPipeline",
 
   // --- Git SETTINGS ---
-  "git.autofetch": true, // Automatically fetches changes to keep you updated.
-  "git.confirmSync": false, // Disables confirmation dialog for sync/push.
-  "git.confirmPush": false, // Disables confirmation dialog for push.
-  "git.inputValidation": false, // Disables Controls commitment message.
-  "git.enableSmartCommit": true, // Allows one-click push/commit without additional prompts.
-  "git.postCommitCommand": "sync", // Automatically pushes after commit.
-  "git.showPushSuccessNotification": true, // Optional: Notifies on successful push.
-  "git.alwaysShowStagedChangesResourceGroup": true, // Easier visibility of staged changes.
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.confirmPush": false,
+  "git.inputValidation": false,
+  "git.enableSmartCommit": true,
+  "git.postCommitCommand": "sync",
+  "git.showPushSuccessNotification": true,
+  "git.alwaysShowStagedChangesResourceGroup": true,
 
   // --- EXTENSION SETTINGS ---
 
@@ -290,14 +296,11 @@
   "editor.suggestSelection": "first",
   "editor.suggest.showConstants": true,
   "editor.inlineSuggest.enabled": true,
-  "editor.snippetSuggestions": "bottom",
+  "editor.snippetSuggestions": "inline",
   "editor.suggest.insertMode": "insert",
-  "github.copilot.advanced.length": 500,
-  "github.copilot.advanced.itemSize": 3,
   "editor.parameterHints.enabled": true,
   "editor.acceptSuggestionOnEnter": "on",
-  "github.copilot.advanced.listCount": 10,
-  "editor.inlineSuggest.showToolbar": "always",
+  "editor.inlineSuggest.showToolbar": "onHover",
   "github.copilot.chat.codesearch.enabled": true,
   "github.copilot.chat.agent.thinkingTool": true,
   "github.copilot.editor.enableCodeActions": true,
@@ -305,11 +308,11 @@
   "github.copilot.chat.generateTests.codeLens": true,
   "github.copilot.nextEditSuggestions.enabled": true,
   "editor.wordBasedSuggestions": "matchingDocuments",
-  "github.copilot.terminal.enableTabCompletions": true,
-  "github.copilot.terminal.enableTerminalGhostText": true,
-  "github.copilot.advanced.indentationMode": "intelligent",
   "github.copilot.enable": {
-    "*": true
+    "*": true,
+    "plaintext": true,
+    "markdown": true,
+    "scminput": true
   },
   "github.copilot.advanced": {
     "enable": {
@@ -408,20 +411,6 @@
     }
   ],
 
-  // --- File Nesting SETTINGS ---
-  "explorer.fileNesting.enabled": true,
-  "explorer.fileNesting.patterns": {
-    "package.json": ".eslint*, .prettier*, tsconfig*, vite*, pnpm-*, bun.lockb, nest*, package-lock*",
-    "tailwind.config.*": "tailwind.config*, postcss.config*",
-    ".env.local": ".env*",
-    ".env": ".env*"
-  },
-  // --- Apc Customize UI++ SETTINGS ---
-  "apc.font.family": "Inter",
-
-  // --- tabnine SETTINGS ---
-  "tabnine.experimentalAutoImports": true,
-
   // --- LANGUAGE-SPECIFIC SETTINGS ---
 
   // --- JavaScript & TypeScript SETTINGS ---
@@ -455,8 +444,8 @@
   "json.format.enable": true,
   "yaml.format.enable": true,
   "json.schemas": [],
-  "yaml.schemas": {},
-
+  "yaml.schemas": {}
+  /*
   // --- Python SETTINGS ---
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
@@ -498,12 +487,8 @@
 
   // --- Docker & Kubernetes SETTINGS ---
   "docker.showStartPage": false,
-  "remote.containers.defaultExtensions": [
-    "ms-azuretools.vscode-docker",
-    "ms-kubernetes-tools.vscode-kubernetes-tools"
-  ]
+  "bracket-pair-colorizer-2.depreciation-notice": false
 
-  /*
   "workbench.colorCustomizations": {
     "statusBar.background": "#0a0a0a",
     "statusBar.debuggingBackground": "#0a0a0a",
