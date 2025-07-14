@@ -1,0 +1,23 @@
+{
+  "name": "o9-theme",
+  "displayName": "o9 Theme",
+  "description": "Custom VS Code theme",
+  "version": "0.0.1",
+  "publisher": "o9-9",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "icon": "icon.png",
+  "contributes": {
+    "themes": [
+      {
+        "label": "o9 Theme",
+        "uiTheme": "vs-dark",
+        "path": "themes/o9-Theme.json"
+      }
+    ]
+  }
+}
