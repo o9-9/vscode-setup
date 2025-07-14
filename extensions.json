@@ -1,30 +1,11 @@
 {
   "extensions": [
-    "jock.svg",
     "github.copilot",
-    "eamodio.gitlens",
-    "leodevbro.blockman",
-    "redhat.vscode-yaml",
-    "bierner.color-info",
     "github.copilot-chat",
-    "vilicvane.es-quotes",
     "ms-vscode.powershell",
-    "drcika.apc-extension",
-    "usernamehw.errorlens",
-    "nmsmith89.incrementor",
-    "yatki.vscode-surround",
     "miguelsolorio.symbols",
-    "oderwat.indent-rainbow",
     "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint",
-    "foxundermoon.shell-format",
-    "yzhang.markdown-all-in-one",
     "miguelsolorio.fluent-icons",
-    "aaron-bond.better-comments",
-    "alefragnani.project-manager",
-    "kamikillerto.vscode-colorize",
-    "github.vscode-pull-request-github",
-    "christian-kohler.path-intellisense",
-    "streetsidesoftware.code-spell-checker"
+    "funkyremi.vscode-google-translate"
   ]
 }
