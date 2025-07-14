@@ -6,7 +6,7 @@ if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 
 function Install-o9Theme {
     param (
-        [string]$ThemeUrl = "https://github.com/o9-9/vscode-setup/releases/download/9/o9-Theme.zip",
+        [string]$ThemeUrl = "https://github.com/o9-9/files/releases/download/9/o9-Theme.zip",
         [string]$ZipPath = "$env:TEMP\o9-Theme.zip",
         [string]$ExtractPath = "$env:TEMP\o9-Theme",
         [string]$DestinationPath = "C:\Program Files\Microsoft VS Code\resources\app\extensions",
@@ -103,7 +103,7 @@ function Install-JetBrainsMono {
 function Install-CodeFonts {
     param (
         [Parameter(Mandatory=$false)]
-        [string]$ZipUrl = "https://github.com/o9-9/vscode-setup/raw/main/CodeFonts.zip"
+        [string]$ZipUrl = "https://github.com/o9-9/files/releases/download/9/CodeFonts.zip"
     )
 
     # Ensure running as administrator
