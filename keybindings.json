@@ -1,21 +1,7 @@
 [
   {
-    "key": "home",
-    "command": "-github.copilot.generate",
-    "when": "editorTextFocus && github.copilot.activated && !commentEditorFocused && !inInteractiveInput && !interactiveEditorFocused"
-  },
-  {
-    "key": "ctrl+enter",
-    "command": "-github.copilot.generate",
-    "when": "editorTextFocus && github.copilot.activated && !commentEditorFocused && !inInteractiveInput && !interactiveEditorFocused"
-  },
-  {
-    "key": "insert",
-    "command": "-editor.action.toggleOvertypeInsertMode"
-  },
-
-  {
-    "key": "ctrl+u",
-    "command": "errorLens.toggleInlineMessage"
+    "key": "f21",
+    "command": "extension.translateTextPreferred",
+    "when": "editorTextFocus"
   }
 ]
