@@ -6,6 +6,7 @@
     "miguelsolorio.symbols",
     "esbenp.prettier-vscode",
     "miguelsolorio.fluent-icons",
-    "funkyremi.vscode-google-translate"
+    "funkyremi.vscode-google-translate",
+    "GitHub.vscode-pull-request-github"
   ]
 }
