@@ -1,22 +1,22 @@
 {
     "extensions": [
         // --- Core Web Development ---
+        "redhat.java",                                 // Language Support for Java
+        "redhat.vscode-xml",                           // Language Support for XML
+        "redhat.vscode-yaml",                          // Language Support for YAML
         "ritwickdey.liveserver",                       // Live Server for instant preview
         "ecmel.vscode-html-css",                       // HTML/CSS Intellisense
-        "xabikos.javascriptsnippets",                  // JS/ES6 Snippets
-        "esbenp.prettier-vscode",                      // Prettier Formatter
-
+        "xabikos.javascriptsnippets",                  // Java Script Snippets
+        "esbenp.prettier-vscode",                      // Prettier Code Formatter
+        "dbaeumer.vscode-eslint",                      // ESLint JavaScript
         // --- HTML & CSS Productivity ---
         "zignd.html-css-class-completion",             // CSS Class Intellisense in HTML
         "formulahendry.auto-rename-tag",               // Auto Rename Paired HTML/XML Tag
-        "anseki.vscode-color",                         // Color Picker
         "bierner.color-info",                          // Color Information
         "oderwat.indent-rainbow",                      // Indent Rainbow
-
         // --- JavaScript & TypeScript ---
         "christian-kohler.path-intellisense",          // Path Intellisense
         "CoenraadS.bracket-pair-colorizer-2",          // Bracket Pair Colorizer
-
         // --- Git & Collaboration ---
         "eamodio.gitlens",                             // GitLens
         "GitHub.vscode-pull-request-github",           // GitHub Pull Request
@@ -25,28 +25,22 @@
         "vsls-contrib.codetour",                       // CodeTour
         "vsls-contrib.gistfs",                         // GistFS
         "vsls-contrib.gitdoc",                         // GitDoc
-
         // --- Markdown & Documentation ---
         "bierner.markdown-checkbox",                   // Markdown Checkbox
         "bierner.markdown-mermaid",                    // Mermaid Diagrams
         "bierner.markdown-preview-github-styles",      // GitHub Markdown Style
         "yzhang.markdown-all-in-one",                  // Markdown All in One
-
         // --- Testing & Quality ---
         "pspester.pester-test",                        // Pester Test
-        "gruntfuggly.todo-tree",                       // TODO Tree
         "justin-grote.crisp-logs",                     // Crisp Logs
         "usernamehw.errorlens",                        // Error Lens
         "everettjf.filter-line",                       // Filter Line
-
         // --- PowerShell & DevOps ---
         "ms-vscode.powershell",                        // PowerShell
         "tylerleonhardt.vscode-inline-values-powershell", // Inline Values PowerShell
-        "cschleiden.vscode-github-actions",            // GitHub Actions
-
+        "github.vscode-github-actions",            // GitHub Actions
         // --- REST & API ---
         "rangav.vscode-thunder-client",                // Thunder Client
-
         // --- Utilities ---
         "EditorConfig.EditorConfig",                   // EditorConfig
         "fabianlauer.vs-code-xml-format",              // XML Format
@@ -57,15 +51,11 @@
         "miguelsolorio.symbols",                       // Symbols Sidebar
         "miguelsolorio.fluent-icons",                  // Fluent Icons
         "funkyremi.vscode-google-translate",           // Google Translate
-
         // --- Remote Development ---
         "ms-vscode-remote.remote-ssh-edit",            // Remote SSH Edit
         "ms-vscode-remote.vscode-remote-extensionpack",// Remote Extension Pack
-
         // --- Theming & UI ---
-        "johnpapa.vscode-peacock",                     // Peacock
         "wwm.better-align",                            // Better Align
-
         // --- GitHub Copilot ---
         "github.copilot",                              // Copilot
         "github.copilot-chat"                          // Copilot Chat
