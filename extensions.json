@@ -5,8 +5,7 @@
     "ms-vscode.powershell",
     "miguelsolorio.symbols",
     "esbenp.prettier-vscode",
-    "miguelsolorio.fluent-icons",
-    "funkyremi.vscode-google-translate",
-    "GitHub.vscode-pull-request-github"
+    "miguelsolorio.fluent-icons"
   ]
 }
+
