@@ -1,4 +1,5 @@
 {
+  //  - Updates - Privacy - Security - Show - Suggestions
   "update.mode": "manual",
   "update.showReleaseNotes": false,
   "update.enableWindowsBackgroundUpdates": false,
@@ -131,11 +132,7 @@
       "path": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     }
   },
-  //  - Confirm
-  "debug.confirmOnExit": "never",
-  "window.confirmBeforeClose": "never",
-  "window.confirmSaveUntitledWorkspace": false,
-  //  - Workbench - Search - Editor - Explorer
+  //  - Workbench - Search - Editor - Explorer- Confirm
   "workbench.tree.indent": 16,
   "workbench.tips.enabled": false,
   "workbench.editor.limit.value": 1,
@@ -146,18 +143,6 @@
   "workbench.editor.closeOnFileDelete": true,
   "workbench.tree.renderIndentGuides": "none",
   "workbench.editor.enablePreviewFromQuickOpen": true,
-  "workbench.editorAssociations": {
-    "*.copilotmd": "vscode.markdown.preview.editor",
-    "*.jpg": "imagePreview.previewEditor"
-  },
-  //  - Default and User Settings
-  //"workbench.settings.openDefaultSettings": true,
-  //  - Settings .json
-  //"workbench.settings.editor": "json",
-  //  - Updates - Privacy - Security - Show - Suggestions
-  //  - Tabs
-  "editor.tabSize": 2,
-  "editor.tabCompletion": "on",
   "workbench.editor.wrapTabs": true,
   "workbench.panel.showLabels": false,
   "workbench.editor.tabSizing": "shrink",
@@ -170,6 +155,8 @@
   "search.smartCase": true,
   "search.seedWithNearestWord": true,
   "editor.folding": false,
+  "editor.tabSize": 2,
+  "editor.tabCompletion": "on",
   "editor.dragAndDrop": false,
   "editor.glyphMargin": false,
   "editor.hover.sticky": false,
@@ -184,8 +171,9 @@
   "explorer.fileNesting.enabled": true,
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmPasteNative": false,
-  //  -  Git Ignore
-  //"explorer.excludeGitIgnore": false,
+  "debug.confirmOnExit": "never",
+  "window.confirmBeforeClose": "never",
+  "window.confirmSaveUntitledWorkspace": false,
   //  - Git Settings
   "git.autofetch": "all",
   "git.confirmSync": false,
@@ -221,20 +209,9 @@
   "git.openRepositoryInParentFolders": "always",
   "git.blame.statusBarItem.template": "${authorName}",
   "git.blame.editorDecoration.template": "${authorName}",
-  //
-  "scm.diffDecorations": "none",
-  "zenMode.centerLayout": false,
-  "editor.guides.indentation": false,
-  "editor.accessibilitySupport": "off",
-  "editor.guides.bracketPairs": "active",
-  "debug.allowBreakpointsEverywhere": true,
-  "diffEditor.ignoreTrimWhitespace": false,
-  "diffEditor.hideUnchangedRegions.enabled": true,
-  "extensions.verifySignature": false,
-  "extensions.autoCheckUpdates": false,
-  "extensions.ignoreRecommendations": true,
-  "extensions.autoUpdate": "onlyEnabledExtensions",
-  //  - COPILOT - Chat  - Extensions  - Other
+  //  -  Git Ignore
+  //"explorer.excludeGitIgnore": false,
+  //  - COPILOT - Chat  - Extensions  - Other Settings
   "chat.agent.enabled": true,
   "chat.agent.maxRequests": 1000,
   "chat.tools.autoApprove": true,
@@ -247,22 +224,37 @@
   "github.copilot.enable": {
     "*": true,
     "plaintext": false,
-    "markdown": true,
-    "scminput": false,
-    "yaml": true
+    "markdown": false,
+    "scminput": false
   },
-  // Default clone directory for Windows 11 for organization.
+  "scm.diffDecorations": "none",
+  "zenMode.centerLayout": false,
+  "editor.guides.indentation": false,
+  "editor.accessibilitySupport": "off",
+  "editor.guides.bracketPairs": "active",
+  "debug.allowBreakpointsEverywhere": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.hideUnchangedRegions.enabled": true,
+  "extensions.verifySignature": false,
+  "extensions.autoCheckUpdates": false,
+  "extensions.ignoreRecommendations": true,
+  "extensions.autoUpdate": "onlyEnabledExtensions",
+  //  - Default clone directory
   "git.defaultCloneDirectory": "~/Projects",
   "[github-actions-workflow]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
-  //  - Format
+  //  - Default and User Settings
+  //"workbench.settings.openDefaultSettings": true,
+  //  - Settings .json
+  //"workbench.settings.editor": "json",
+  //  - Formatter and Languages
   "editor.formatOnType": true,
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+    // "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[powershell]": {
     "editor.defaultFormatter": "ms-vscode.powershell"
@@ -289,7 +281,7 @@
     "editor.defaultFormatter": "vscode.html-language-features"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    // "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[java]": {
     // "editor.defaultFormatter": "redhat.java"
