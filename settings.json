@@ -3,11 +3,11 @@
   "update.mode": "manual",
   "update.showReleaseNotes": false,
   "update.enableWindowsBackgroundUpdates": false,
-  //  === === === ===
+  //  === === === === ===
   //  === TELEMETRY ===
   "telemetry.telemetryLevel": "off",
   "telemetry.feedback.enabled": true,
-  //  === === === ===
+  //  === === === === ===
   //  === SECURITY ===
   "security.restrictUNCAccess": false,
   "security.workspace.trust.enabled": false,
@@ -17,11 +17,11 @@
   "security.workspace.trust.startupPrompt": "never",
   "security.promptForLocalFileProtocolHandling": false,
   "security.promptForRemoteFileProtocolHandling": false,
-  //  === === === ===
+  //  === === === === ===
   //  === PROBLEMS ===
   "problems.defaultViewMode": "table",
   "problems.decorations.enabled": false,
-  //  === === === === === === ===
+  //  === === === === === === === ===
   //  === Theme & Icon & Font ===
   "workbench.colorTheme": "o9",
   "workbench.iconTheme": "symbols",
@@ -41,7 +41,7 @@
   "workbench.editor.highlightModifiedTabs": true,
   "editor.guides.highlightActiveIndentation": false,
   "editor.unicodeHighlight.ambiguousCharacters": false,
-  //  === === === === ===
+  //  === === === === === ===
   //  === Suggestions ===
   "editor.suggest.preview": true,
   "chat.renderRelatedFiles": true,
@@ -54,7 +54,7 @@
     "strings": "on",
     "other": "on"
   },
-  //  === === === === === === === ===
+  //  === === === === === === === === ===
   //  === Line & Interface & Title ===
   "editor.lineNumbers": "on",
   "notebook.lineNumbers": "on",
@@ -70,7 +70,7 @@
   "merge-conflict.diffViewPosition": "Below",
   "merge-conflict.autoNavigateNextConflict.enabled": true,
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
-  //  === === === === === ===
+  //  === === === === === === ===
   //  === Show & Location ===
   "workbench.secondarySideBar.showLabels": false,
   "workbench.view.alwaysShowHeaderActions": true,
@@ -83,8 +83,8 @@
   "editor.gotoLocation.multipleImplementations": "goto",
   "editor.gotoLocation.multipleReferences": "gotoAndPeek",
   "editor.gotoLocation.multipleTypeDefinitions": "gotoAndPeek",
-  //  === === === === === === === === === === === === === === === ===
-  //  === WordWrap & Scroll Bar & Smooth Scroll & Minimap & Cursor ===
+  //  === === === === === === === ===
+  //  === WordWrap & Scroll Bar===
   "editor.wordWrap": "on",
   "chat.editor.wordWrap": "on",
   "outline.collapseItems": "alwaysExpand",
@@ -95,6 +95,8 @@
   "workbench.editor.scrollToSwitchTabs": true,
   "editor.scrollbar.verticalScrollbarSize": 8,
   "editor.scrollbar.horizontalScrollbarSize": 8,
+  //  === === === === === === === === === === ===
+  //  === Smooth Scroll & Minimap & Cursor ===
   "editor.smoothScrolling": true,
   "workbench.list.smoothScrolling": true,
   "editor.minimap.maxColumn": 60,
@@ -106,7 +108,7 @@
   "editor.multiCursorLimit": 50000,
   "editor.hideCursorInOverviewRuler": true,
   "editor.cursorSmoothCaretAnimation": "on",
-  //  === === === ===
+  //  === === === === ===
   //  === TERMINAL ===
   "terminal.integrated.fontSize": 13,
   "terminal.integrated.cursorStyle": "line",
