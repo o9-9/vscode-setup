@@ -1,47 +1,123 @@
 [
   {
-    "key": "ctrl+shift+s",
-    "command": "workbench.action.files.saveAll"
+    "key": "shift+f",
+    "command": "search.action.restrictSearchToFolder",
+    "when": "folderMatchWithResourceFocus && searchViewletVisible"
   },
   {
-    "key": "ctrl+k s",
-    "command": "-workbench.action.files.saveAll"
+    "key": "shift+alt+f",
+    "command": "-search.action.restrictSearchToFolder",
+    "when": "folderMatchWithResourceFocus && searchViewletVisible"
   },
   {
-    "key": "ctrl+k ctrl+s",
-    "command": "workbench.action.files.saveAs"
+    "key": "shift+f",
+    "command": "filesExplorer.findInFolder",
+    "when": "explorerResourceIsFolder && filesExplorerFocus && foldersViewVisible && !inputFocus"
   },
   {
-    "key": "ctrl+shift+s",
-    "command": "-workbench.action.files.saveAs"
+    "key": "shift+alt+f",
+    "command": "-filesExplorer.findInFolder",
+    "when": "explorerResourceIsFolder && filesExplorerFocus && foldersViewVisible && !inputFocus"
   },
   {
-    "key": "shift+alt+l",
-    "command": "editor.action.transformToLowercase"
+    "key": "shift+f",
+    "command": "notebook.format",
+    "when": "notebookEditable && !editorTextFocus && activeEditor == 'workbench.editor.notebook'"
   },
   {
-    "key": "shift+alt+u",
-    "command": "editor.action.transformToUppercase"
+    "key": "shift+alt+f",
+    "command": "-notebook.format",
+    "when": "notebookEditable && !editorTextFocus && activeEditor == 'workbench.editor.notebook'"
   },
   {
-    "key": "ctrl+e",
-    "command": "workbench.explorer.fileView.focus"
+    "key": "shift+f",
+    "command": "editor.action.formatDocument.none",
+    "when": "editorTextFocus && !editorHasDocumentFormattingProvider && !editorReadonly"
   },
   {
-    "key": "alt+f1",
-    "command": "explorer.newFolder"
+    "key": "shift+alt+f",
+    "command": "-editor.action.formatDocument.none",
+    "when": "editorTextFocus && !editorHasDocumentFormattingProvider && !editorReadonly"
   },
   {
-    "key": "alt+f2",
-    "command": "explorer.newFile"
+    "key": "shift+f",
+    "command": "editor.action.formatDocument",
+    "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
   },
   {
-    "key": "ctrl+shift+oem_2",
-    "command": "workbench.action.toggleMaximizedPanel"
+    "key": "shift+alt+f",
+    "command": "-editor.action.formatDocument",
+    "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
   },
   {
-    "key": "ctrl+enter",
-    "command": "-github.copilot.generate",
-    "when": "editorTextFocus && github.copilot.activated && !commentEditorFocused"
+    "key": "shift+f",
+    "command": "notebook.formatCell",
+    "when": "editorHasDocumentFormattingProvider && editorTextFocus && inCompositeEditor && notebookEditable && !editorReadonly && activeEditor == 'workbench.editor.notebook'"
+  },
+  {
+    "key": "shift+alt+f",
+    "command": "-notebook.formatCell",
+    "when": "editorHasDocumentFormattingProvider && editorTextFocus && inCompositeEditor && notebookEditable && !editorReadonly && activeEditor == 'workbench.editor.notebook'"
+  },
+  {
+    "key": "shift+z",
+    "command": "workbench.action.closeFolder",
+    "when": "emptyWorkspaceSupport && workbenchState != 'empty'"
+  },
+  {
+    "key": "ctrl+k f",
+    "command": "-workbench.action.closeFolder",
+    "when": "emptyWorkspaceSupport && workbenchState != 'empty'"
+  },
+  {
+    "key": "shift+a",
+    "command": "markdown.showPreviewToSide",
+    "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+  },
+  {
+    "key": "ctrl+k v",
+    "command": "-markdown.showPreviewToSide",
+    "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+  },
+  // Trigger inline suggestion on demand (replaces the usual Ctrl/Cmd+Space)
+  {
+    "key": "ctrl+space",
+    "command": "editor.action.inlineSuggest.trigger",
+    "when": "editorTextFocus && !inlineSuggestionVisible"
+  },
+  // Optionally keep a way to open the classic suggestion widget (on demand)
+  {
+    "key": "ctrl+alt+space",
+    "command": "editor.action.triggerSuggest",
+    "when": "editorTextFocus"
+  },
+  // Inline accept: whole suggestion
+  {
+    "key": "tab",
+    "command": "editor.action.inlineSuggest.accept",
+    "when": "inlineSuggestionVisible && textInputFocus"
+  },
+  // Inline accept: next word (great for precision and speed)
+  {
+    "key": "ctrl+]",
+    "command": "editor.action.inlineSuggest.acceptNextWord",
+    "when": "inlineSuggestionVisible && textInputFocus"
+  },
+  // Inline accept: next line
+  {
+    "key": "ctrl+'",
+    "command": "editor.action.inlineSuggest.acceptNextLine",
+    "when": "inlineSuggestionVisible && textInputFocus"
+  },
+  // Cycle inline suggestions if multiple are available
+  {
+    "key": "alt+]",
+    "command": "editor.action.inlineSuggest.showNext",
+    "when": "inlineSuggestionVisible && textInputFocus"
+  },
+  {
+    "key": "alt+[",
+    "command": "editor.action.inlineSuggest.showPrevious",
+    "when": "inlineSuggestionVisible && textInputFocus"
   }
 ]
