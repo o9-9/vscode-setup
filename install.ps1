@@ -6,9 +6,9 @@ if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 
 function Install-o9Theme {
     param (
-        [string]$ThemeUrl = "https://github.com/o9-9/files/releases/download/9/o9-Theme.zip",
-        [string]$ZipPath = "$env:TEMP\o9-Theme.zip",
-        [string]$ExtractPath = "$env:TEMP\o9-Theme",
+        [string]$ThemeUrl = "https://github.com/o9-9/o9-theme/releases/download/9.9.9/o9-theme.zip",
+        [string]$ZipPath = "$env:TEMP\o9-theme.zip",
+        [string]$ExtractPath = "$env:TEMP\o9-theme",
         [string]$DestinationPath = "C:\Program Files\Microsoft VS Code\resources\app\extensions",
         [string]$SevenZipPath = "C:\Program Files\7-Zip\7z.exe"
     )
@@ -276,3 +276,4 @@ Write-Host "`n=======================================" -ForegroundColor Yellow
 Write-Host "       ✅ INSTALLATION COMPLETE!         " -ForegroundColor Green
 Write-Host "   All components have been installed.   " -ForegroundColor Green
 Write-Host "=========================================" -ForegroundColor Yellow
+
