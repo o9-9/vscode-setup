@@ -7,22 +7,11 @@
     "esbenp.prettier-vscode",
     "miguelsolorio.fluent-icons",
     "aaron-bond.better-comments",
-    "be5invis.vscode-custom-css",
-    "astro-build.astro-vscode",
     "editorconfig.editorconfig",
-    "dbaeumer.vscode-eslint",
     "github.vscode-github-actions",
-    "ecmel.vscode-html-css",
-    "zignd.html-css-class-completion",
-    "yzhang.markdown-all-in-one",
-    "christian-kohler.path-intellisense",
-    "csstools.postcss",
-    "jock.svg",
-    "bradlc.vscode-tailwindcss",
-    "gruntfuggly.todo-tree",
-    "formulahendry.auto-rename-tag",
-    "streetsidesoftware.code-spell-checker"
+    "jock.svg"
   ]
 }
+
 
 
