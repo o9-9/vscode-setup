@@ -666,7 +666,6 @@
     "github.copilot",
     "github.copilot-chat",
     "github.vscode-github-actions",
-    "github.vscode-pull-request-github",
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "miguelsolorio.symbols",
@@ -686,9 +685,11 @@
     "redhat.vscode-yaml",
     "zignd.html-css-class-completion",
     "christian-kohler.path-intellisense",
+    "eamodio.gitlens",
     "antfu.vite",
     "bradlc.vscode-tailwindcss",
-    "astro-build.astro-vscode"
+    "astro-build.astro-vscode",
+    "rust-lang.rust-analyzer"
   ],
 
   //// === === === ===
