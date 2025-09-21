@@ -79,45 +79,14 @@
     "command": "-markdown.showPreviewToSide",
     "when": "!notebookEditorFocused && editorLangId == 'markdown'"
   },
-  // Trigger inline suggestion on demand (replaces the usual Ctrl/Cmd+Space)
-  {
-    "key": "ctrl+space",
-    "command": "editor.action.inlineSuggest.trigger",
-    "when": "editorTextFocus && !inlineSuggestionVisible"
-  },
-  // Optionally keep a way to open the classic suggestion widget (on demand)
-  {
-    "key": "ctrl+alt+space",
-    "command": "editor.action.triggerSuggest",
-    "when": "editorTextFocus"
-  },
-  // Inline accept: whole suggestion
   {
     "key": "tab",
-    "command": "editor.action.inlineSuggest.accept",
-    "when": "inlineSuggestionVisible && textInputFocus"
-  },
-  // Inline accept: next word (great for precision and speed)
-  {
-    "key": "ctrl+]",
-    "command": "editor.action.inlineSuggest.acceptNextWord",
-    "when": "inlineSuggestionVisible && textInputFocus"
-  },
-  // Inline accept: next line
-  {
-    "key": "ctrl+'",
-    "command": "editor.action.inlineSuggest.acceptNextLine",
-    "when": "inlineSuggestionVisible && textInputFocus"
-  },
-  // Cycle inline suggestions if multiple are available
-  {
-    "key": "alt+]",
-    "command": "editor.action.inlineSuggest.showNext",
-    "when": "inlineSuggestionVisible && textInputFocus"
+    "command": "acceptSelectedSuggestion",
+    "when": "editorTextFocus && suggestWidgetVisible && !inSnippetMode"
   },
   {
-    "key": "alt+[",
-    "command": "editor.action.inlineSuggest.showPrevious",
-    "when": "inlineSuggestionVisible && textInputFocus"
+    "key": "tab",
+    "command": "editor.action.inlineSuggest.commit",
+    "when": "editorTextFocus && inlineSuggestionVisible && !inSnippetMode"
   }
 ]
