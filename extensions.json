@@ -2,13 +2,30 @@
   "extensions": [
     "github.copilot",
     "github.copilot-chat",
-    "ms-vscode.powershell",
-    "miguelsolorio.symbols",
-    "esbenp.prettier-vscode",
-    "miguelsolorio.fluent-icons",
-    "aaron-bond.better-comments",
-    "editorconfig.editorconfig",
     "github.vscode-github-actions",
-    "jock.svg"
+    "github.vscode-pull-request-github",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "miguelsolorio.symbols",
+    "miguelsolorio.fluent-icons",
+    "ms-vscode.powershell",
+    "ms-vscode.remote-server",
+    "ms-vscode.remote-explorer",
+    "formulahendry.code-runner",
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-rename-tag",
+    "jock.svg",
+    "editorconfig.editorcon",
+    "aaron-bond.better-comments",
+    "yzhang.markdown-all-in-one",
+    "redhat.java",
+    "redhat.vscode-xml",
+    "redhat.vscode-yaml",
+    "zignd.html-css-class-completion",
+    "christian-kohler.path-intellisense",
+    "antfu.vite",
+    "bradlc.vscode-tailwindcss",
+    "astro-build.astro-vscode"
   ]
 }
+
