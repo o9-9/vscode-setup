@@ -371,9 +371,9 @@
   "files.eol": "\n",
   "files.autoSave": "off",
   "files.enableTrash": false,
-  "files.trimFinalNewlines": true,
+  "files.trimFinalNewlines": false,
   "files.insertFinalNewline": false,
-  "files.trimTrailingWhitespace": true,
+  "files.trimTrailingWhitespace": false,
   "files.associations": {
     "*.env*": "properties"
   },
@@ -672,5 +672,6 @@
   "advancedNewFile.exclude": {
     "node_modules": true,
     "dist": true
-  }
+  },
+  "remoteHub.commitDirectlyWarning": "off"
 }
