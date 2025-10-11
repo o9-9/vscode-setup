@@ -6,7 +6,7 @@ if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 
 function Install-o9Theme {
     param (
-        [string]$ThemeUrl = "https://github.com/o9-9/o9-theme/releases/download/9.9.9/o9-theme.zip",
+        [string]$ThemeUrl = "https://raw.githubusercontent.com/o9-9/o9-theme/main/o9-theme.zip",
         [string]$ZipPath = "$env:TEMP\o9-theme.zip",
         [string]$ExtractPath = "$env:TEMP\o9-theme",
         [string]$DestinationPath = "$env:PROGRAMFILES\Microsoft VS Code\resources\app\extensions",
@@ -323,4 +323,5 @@ function Start-Installer {
 
 # Start the script
 Start-Installer
+
 
