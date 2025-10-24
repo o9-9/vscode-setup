@@ -1,18 +1,4 @@
 {
-  //--------------------------------------------------
-  //  *  Cursor
-  //
-  //"editor.minimap.autohide": false,
-  //"window.menuBarVisibility": "classic",
-  //"workbench.layoutControl.enabled": true,
-  //"cursor.composer.textSizeScale": 0.85,
-  //"cursor.terminal.usePreviewBox": true,
-  //"cursor.cpp.enablePartialAccepts": true,
-  //"cursor.diffs.useCharacterLevelDiffs": true,
-  //"cursor.composer.usageSummaryDisplay": "never",
-  //"cursor.composer.shouldAutoScrollToBottom": false,
-  //--------------------------------------------------
-  //
   //  *  Update
   "update.mode": "manual",
   "update.showReleaseNotes": false,
@@ -459,12 +445,6 @@
   "[markdown]": {
     "editor.defaultFormatter": "vscode.markdown-language-features"
   },
-  "[yaml]": {
-    "editor.defaultFormatter": "redhat.vscode-yaml"
-  },
-  "[xml]": {
-    "editor.defaultFormatter": "redhat.vscode-xml"
-  },
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   },
@@ -489,23 +469,29 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
+  "[yaml]": {
+    //"editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[xml]": {
+    //"editor.defaultFormatter": "redhat.vscode-xml"
+  },
   "[java]": {
     "editor.tabSize": 4,
-    "editor.defaultFormatter": "redhat.java"
+    //"editor.defaultFormatter": "redhat.java"
   },
   "[rust]": {
     "editor.tabSize": 4,
-    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+    //"editor.defaultFormatter": "rust-lang.rust-analyzer"
   },
   "[php]": {
     "editor.tabSize": 4,
-    "editor.defaultFormatter": "vscode.php-language-features"
+    //"editor.defaultFormatter": "vscode.php-language-features"
   },
   "[properties]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
+    //"editor.defaultFormatter": "foxundermoon.shell-format"
   },
   "[shellscript]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
+    //"editor.defaultFormatter": "foxundermoon.shell-format"
   },
   "[powershell]": {
     "editor.tabSize": 4
