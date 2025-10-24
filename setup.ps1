@@ -7,7 +7,6 @@ $Theme = @{
     Info      = 'White'
 }
 
-
 # ASCII Logo
 $Logo = @"
                     ███████████   
@@ -20,8 +19,11 @@ $Logo = @"
   ██║      ██║       ██      ██║  
   ███████████║       ██████████║  
    ╚═════════╝       ╚═════════╝  
+                                 
 "@
 
+# Border
+$border = "$($PSStyle.Foreground.DarkGray)════════════════════════════════$($PSStyle.Reset)"
 
 # Beautiful Output Function
 function Write-Styled {
@@ -45,7 +47,6 @@ function Write-Styled {
         Write-Host $output -ForegroundColor $Color
     }
 }
-
 
 # Check if running with administrator privileges
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
@@ -79,11 +80,6 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 
     break
 }
-
-
-# Border
-$border = "$($PSStyle.Foreground.DarkGray)════════════════════════════════$($PSStyle.Reset)"
-
 
 # Show Logo
 Write-Host $Logo -ForegroundColor $Theme.Primary
