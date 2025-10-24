@@ -155,7 +155,7 @@ $border
 
 # Install o9 Theme
 Write-Styled "Installing o9 Theme..." -Color $Theme.Primary -Prefix "Step 5/6"
-Invoke-WebRequest "$repoUrl/o9-theme.zip" -OutFile "$env:TEMP\o9-theme.zip" -ErrorAction SilentlyContinue
+Invoke-WebRequest "$repoUrl/archive/o9-theme.zip" -OutFile "$env:TEMP\o9-theme.zip" -ErrorAction SilentlyContinue
 Expand-Archive "$env:TEMP\o9-theme.zip" -DestinationPath "$env:PROGRAMFILES\Microsoft VS Code\resources\app\extensions" -Force
 Remove-Item "$env:TEMP\o9-theme.zip" -ErrorAction SilentlyContinue
 Write-Styled "o9 Theme Installed" -Color $Theme.Success
