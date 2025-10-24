@@ -7,23 +7,17 @@
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "ms-vscode.powershell",
-    "github.remotehub",
     "github.vscode-github-actions",
     "formulahendry.code-runner",
     "formulahendry.auto-close-tag",
     "formulahendry.auto-rename-tag",
     "jock.svg",
-    "redhat.java",
-    "redhat.vscode-xml",
-    "redhat.vscode-yaml",
     "editorconfig.editorcon",
-    "bradlc.vscode-tailwindcss",
-    "foxundermoon.shell-format",
     "aaron-bond.better-comments",
-    "zignd.html-css-class-completion",
     "christian-kohler.path-intellisense"
   ]
 }
+
 
 
 
