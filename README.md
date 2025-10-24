@@ -1,7 +1,7 @@
 <h1 align="center">VS Code Setup</h1>
 <div align="center">
     <a href="https://github.com/o9-9/vscode-setup/">
-        <img width="120" alt="vscode-setup" src="https://github.com/user-attachments/assets/c5c3bb94-690b-437a-8b89-ce16c702a00a" />
+        <img width="128" alt="vscode-setup" src="https://github.com/user-attachments/assets/ae6defc2-864e-4a91-beed-fde2764df04b" />
     </a>
 </div>
 
@@ -26,3 +26,4 @@ irm https://raw.githubusercontent.com/o9-9/vscode-setup/main/install.ps1 | iex
 ```
 
 ###
+<img width="128" height="128" alt="favicon" src="https://github.com/user-attachments/assets/ae6defc2-864e-4a91-beed-fde2764df04b" />
