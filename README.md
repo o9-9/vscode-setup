@@ -26,4 +26,3 @@ irm https://raw.githubusercontent.com/o9-9/vscode-setup/main/install.ps1 | iex
 ```
 
 ###
-<img width="128" height="128" alt="favicon" src="https://github.com/user-attachments/assets/ae6defc2-864e-4a91-beed-fde2764df04b" />
